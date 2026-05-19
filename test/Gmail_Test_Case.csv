@@ -1,0 +1,149 @@
+Test Cae ID,Test Scenario,"
+ 	
+Priority",Browser,Precondition,Test Steps,Test Data,Expected Result,Actual Result,Status,Defect
+SU-001,Create a new Google Account  ,High,Chrome / Firefox / Edge / Safari (latest),"1)Stable internet connection.
+
+2)Compatible browser or Gmail app.
+
+3)User logged out of existing Google accounts.","1) Navigate to google.com
+2)Enter for my personal use or for my child or for work or my business
+3) Enter First name, Last name
+4)Create a gmail address
+5) Enter a unique username and strong password; confirm password
+6) Provide phone number when prompted and request SMS code
+7) Enter verification code
+8)Add recovery email
+9) Review and accept Google Terms/Privacy
+10)Complete any profile prompts and open Gmail","First: John, Last: Doe
+Username: qa john
+Gmail Address:qa@gmail.com
+Password: 12345@@
+Phone: 01827712311
+Recovery: qa.recovery@example.com","1)Account is created successfully.
+2)phone number verified.
+3)user lands on Gmail with a 'Welcome' or redirected to next page.",,Not Executed,
+SU-002,Create account using recovery email skipping the phone number,Medium,Chrome / Firefox / Edge / Safari (latest),"1)Stable internet connection.
+
+2)Compatible browser or Gmail app.
+
+3)User logged out of existing Google accounts.","1) Go to sign-up page
+2) Fill name, username, strong password
+3) When prompted for phone, choose 'Skip' (if available)
+4) Add recovery email
+5) Accept Terms and finish","First: Jane, Last: Roe
+Username: qa john02
+Password: 12345@@
+Recovery: qa.recovery@example.com","1)Account is created and Gmail loads
+2)Recovery email recorded
+3)No phone verification required.",,Not Executed,
+SU-003,Username already taken produces helpful suggestions,High,Chrome / Firefox / Edge / Safari (latest),"1)Stable internet connection.
+
+2)Compatible browser or Gmail app.
+
+3)User logged out of existing Google accounts.","1) Open sign-up page
+2) Enter First/Last
+3) Enter username 'testuser'
+4) Observe validation message/suggestions
+5) Select a suggested available username and proceed",Username: testuser,There are some messages should indicate that username is taken and shows alternatives ,,Not Executed,
+SU-004,Weak password is rejected with clear guidance,High,Chrome / Firefox / Edge / Safari (latest),"1)Stable internet connection.
+
+2)Compatible browser or Gmail app.
+
+3)User logged out of existing Google accounts.","1) Start sign-up
+2) Enter a weak password like '12345678'
+3) Attempt to proceed",Password: 12345678, password strength/help text appears with policy guidance.,,Not Executed,
+SU-005,Password and confirmation mismatch,High,Chrome / Firefox / Edge / Safari (latest),"1)Stable internet connection.
+
+2)Compatible browser or Gmail app.
+
+3)User logged out of existing Google accounts.","1) Enter password and a different confirm password
+2) Try to continue","Password: Valid@Password12345
+Confirm: Valid@Password123","1)Mismatch error
+2)user cannot proceed until corrected.",,Not Executed,
+SU-006,Name field validation (special characters/length),Low,Chrome / Firefox / Edge / Safari (latest),"1)Stable internet connection.
+
+2)Compatible browser or Gmail app.
+
+3)User logged out of existing Google accounts.","1) Input invalid characters or excessively long name
+2) Attempt to continue","First: $$$$
+Last: ********",Appropriate validation error with accessible message.,,Not Executed,
+SU-007,Age restriction for underage user,High,Chrome / Firefox / Edge / Safari (latest),"1)Stable internet connection.
+
+2)Compatible browser or Gmail app.
+
+3)User logged out of existing Google accounts.","1) During DOB step, enter a date indicating age < 13
+2) Continue",DOB: 2015-01-01 (example; adjust to be <13 years today),"1)Sign-up is blocked or redirected to Family Link/guardian flow per policy
+2) informative message shown.",,Not Executed,
+SU-008,Invalid DOB validation ,Medium,Chrome / Firefox / Edge / Safari (latest),"1)Stable internet connection.
+
+2)Compatible browser or Gmail app.
+
+3)User logged out of existing Google accounts.","1) Enter invalid date (e.g., 2000-02-30)
+2) Continue",DOB: 2000-02-30,clear error message will be shown.,,Not Executed,
+SU-009,Invalid phone number format handling,Medium,Chrome / Firefox / Edge / Safari (latest),"1)Stable internet connection.
+
+2)Compatible browser or Gmail app.
+
+3)User logged out of existing Google accounts.","1) Provide a malformed phone number
+2) Request SMS code","Phone: 123
+Country: United States","1)System does not send an SMS code when the phone number format is invalid.
+2)AN error message appears, 3)clearly informing the user that the number is not valid.
+4)Country code formatting auto-corrects or displays correctly based on the selected country.",,Not Executed,
+SU-010,Verification code resend & rate limiting,Medium,Chrome / Firefox / Edge / Safari (latest),"1)Stable internet connection.
+
+2)Compatible browser or Gmail app.
+
+3)User logged out of existing Google accounts.","1) Request SMS code
+2) Do not enter; click 'Resend'
+3) Repeat until limit reached",phone: +8801712345678,"1)Resend works initially; 
+2)upon threshold, user gets rate limit
+3)no account lock.",,Not Executed,
+SU-012,Recovery email format validation,Low,Chrome / Firefox / Edge / Safari (latest),"1)Stable internet connection.
+
+2)Compatible browser or Gmail app.
+
+3)User logged out of existing Google accounts.","1) Enter invalid recovery email format
+2) Continue",Recovery: not-an-email,"1)User cannot proceed until a valid email format is provided.
+2)Error message is clear and accessible",,Not Executed,
+SU-013,Country switch updates phone prefix,Low,Chrome / Firefox / Edge / Safari (latest),"1)Stable internet connection.
+
+2)Compatible browser or Gmail app.
+
+3)User logged out of existing Google accounts.","1) On phone step, switch country from Bangladesh to UK
+2) Observe prefix update
+3) Enter local-format number",Country: United Kingdom; Phone: 07400 000000,"1)Prefix changes to +44 automatically
+2)number validated accordingly.",,Not Executed,
+SU-014,Show or Hide password toggle works and is accessible,Low,Chrome / Firefox / Edge / Safari (latest),"1)Stable internet connection.
+
+2)Compatible browser or Gmail app.
+
+3)User logged out of existing Google accounts.","1) Type password
+2) Toggle 'Show password'
+3) Verify visibility ",Password: Valid&Password12345,Password field toggles visibility without losing content,,Not Executed,
+SU-015,CAPTCHA appears on suspicious traffic and can be solved,Medium,Chrome / Firefox / Edge / Safari (latest),Use incognito or repeated attempts to trigger CAPTCHA.,"1) Attempt multiple sign-ups quickly
+2) Observe CAPTCHA challenge
+3) Solve and proceed",N/A,"CAPTCHA is presented and, when solved, flow continues.",,Not Executed,
+SU-016,Terms/Privacy links open in a new tab and are readable,Low,Chrome / Firefox / Edge / Safari (latest),"1)Stable internet connection.
+
+2)Compatible browser or Gmail app.
+
+3)User logged out of existing Google accounts.",Click Terms of Service and Privacy Policy links during sign-up,N/A,"1)Each opens in a new window.
+2)original sign-up state is preserved.",,Not Executed,
+SU-017,Maximum Email Length,Medium,Chrome / Firefox / Edge / Safari (latest),"1)Stable internet connection.
+
+2)Compatible browser or Gmail app.
+
+3)User logged out of existing Google accounts.","1. Enter email with 320+ characters (maximum email length)
+2. Attempt login",N/A,System should handle appropriately or show length limit error,,Not Executed,
+SU-018,Minimum Valid Email,Low,Chrome / Firefox / Edge / Safari (latest),"1)Stable internet connection.
+
+2)Compatible browser or Gmail app.
+
+3)User logged out of existing Google accounts.","1. Enter shortest valid email: ""a@b.co""
+2. Attempt login",N/A,Should accept valid format,,Not Executed,
+SU-019,Password Length Limits,Medium,Chrome / Firefox / Edge / Safari (latest),"1)Stable internet connection.
+
+2)Compatible browser or Gmail app.
+
+3)User logged out of existing Google accounts.","1. Test with very long password (100+ characters)
+2. Test with single character password",N/A,Appropriate handling based on Google's password policy,,Not Executed,
